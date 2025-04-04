@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, ref } from 'vue'
+import { computed, ref, watch } from 'vue'
 
 const props = defineProps({
   question: Object,
@@ -7,6 +7,10 @@ const props = defineProps({
 const answer = ref(null);
 const emit = defineEmits(['answer']);
 const hasAnswer = computed(() => answer.value !== null);
+
+watch(() => props.question, () => {
+  answer.value = null;
+})
 </script>
 
 <template>
