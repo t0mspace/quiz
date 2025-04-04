@@ -27,9 +27,8 @@ const addAnswer = (answer: number) => {
   <div class="container">
     <h1>{{ quiz.title }}</h1>
     <Progress :step="step" :max="quiz.questions.length - 1" />
-    <Question :question="question" :answers="answers" v-show="!quizzFinished" @answer="addAnswer" />
-    <Resultat :quiz="quiz" :answers="answers" :v-show="quizzFinished" />
-    {{ answers }}
+    <Question :question="question" :answers="answers" v-if="!quizzFinished" @answer="addAnswer" />
+    <Resultat :quiz="quiz" :answers="answers" v-if="quizzFinished" />
   </div>
 </template>
 
