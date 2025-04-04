@@ -1,7 +1,8 @@
 <script setup lang="ts">
 import { onMounted, ref } from 'vue'
+import Quiz from './components/Quiz.vue'
 
-const quiz = ref({})
+const quiz = ref(null)
 const state = ref('loading')
 
 onMounted(() => {
@@ -26,13 +27,9 @@ onMounted(() => {
   <div v-if="state === 'error'">
     <p>Impossible de charge le quizz</p>
   </div>
-  <div :aria-busy="state === 'loading'">
-    <p>Loading</p>
+  <div v-if="state === 'ok'" v-show="quiz !== null">
+    <Quiz :quiz="quiz" />
   </div>
-  <div v-if="state === 'ok'">
-    <p>{{quiz }}</p>
-  </div>
-  {{ quiz }}
 </template>
 
 <style scoped></style>
